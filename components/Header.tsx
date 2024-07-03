@@ -1,7 +1,7 @@
-import React from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { signOut, useSession } from "next-auth/react";
+import React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { signOut, useSession } from 'next-auth/react';
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -13,43 +13,11 @@ const Header: React.FC = () => {
   let left = (
     <div className="left">
       <Link href="/">
-        <a className="bold" data-active={isActive("/")}>
+        <a className="bold" data-active={isActive('/')}>
           Feed
         </a>
       </Link>
       <style jsx>{`
-        .bold {
-          font-weight: bold;
-        }
-
-        a {
-          text-decoration: none;
-          color: #000;
-          display: inline-block;
-        }
-
-        .left a[data-active="true"] {
-          color: gray;
-        }
-
-        a + a {
-          margin-left: 1rem;
-        }
-      `}</style>
-    </div>
-  );
-
-  let right = null;
-
-  if (status === "loading") {
-    left = (
-      <div className="left">
-        <Link href="/">
-          <a className="bold" data-active={isActive('/')}>
-            Feed
-          </a>
-        </Link>
-        <style jsx>{`
         .bold {
           font-weight: bold;
         }
@@ -68,16 +36,48 @@ const Header: React.FC = () => {
           margin-left: 1rem;
         }
       `}</style>
+    </div>
+  );
+
+  let right = null;
+
+  if (status === 'loading') {
+    left = (
+      <div className="left">
+        <Link href="/">
+          <a className="bold" data-active={isActive('/')}>
+            Feed
+          </a>
+        </Link>
+        <style jsx>{`
+          .bold {
+            font-weight: bold;
+          }
+
+          a {
+            text-decoration: none;
+            color: var(--geist-foreground);
+            display: inline-block;
+          }
+
+          .left a[data-active='true'] {
+            color: gray;
+          }
+
+          a + a {
+            margin-left: 1rem;
+          }
+        `}</style>
       </div>
     );
     right = (
       <div className="right">
         <p>Validating session ...</p>
         <style jsx>{`
-        .right {
-          margin-left: auto;
-        }
-      `}</style>
+          .right {
+            margin-left: auto;
+          }
+        `}</style>
       </div>
     );
   }
